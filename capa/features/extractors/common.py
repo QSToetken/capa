@@ -45,7 +45,11 @@ def extract_format(buf) -> Iterator[Tuple[Feature, Address]]:
 
 def extract_arch(buf) -> Iterator[Tuple[Feature, Address]]:
     if buf.startswith(b"MZ"):
-        yield from capa.features.extractors.pefile.extract_file_arch(pe=pefile.PE(data=buf))
+        try:
+            yield from capa.features.extractors.pefile.extract_file_arch(pe=pefile.PE(data=buf))
+        except Exception as e:
+            print(e)
+            return 0
 
     elif buf.startswith(b"\x7fELF"):
         with contextlib.closing(io.BytesIO(buf)) as f:

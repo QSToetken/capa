@@ -499,12 +499,15 @@ def get_extractor(
     """
     if format_ not in (FORMAT_SC32, FORMAT_SC64):
         if not is_supported_format(path):
+            return None
             raise UnsupportedFormatError()
 
         if not is_supported_arch(path):
+            return None
             raise UnsupportedArchError()
 
         if not is_supported_os(path):
+            return None
             raise UnsupportedOSError()
 
     if format_ == FORMAT_DOTNET:
@@ -576,7 +579,9 @@ def is_nursery_rule_path(path: str) -> bool:
 
 def get_rules(rule_paths: List[str], disable_progress=False) -> List[Rule]:
     rule_file_paths = []
+    print("GETTING RULES")
     for rule_path in rule_paths:
+        print(rule_path)
         if not os.path.exists(rule_path):
             raise IOError("rule path %s does not exist or cannot be accessed" % rule_path)
 
@@ -584,6 +589,7 @@ def get_rules(rule_paths: List[str], disable_progress=False) -> List[Rule]:
             rule_file_paths.append(rule_path)
         elif os.path.isdir(rule_path):
             logger.debug("reading rules from directory %s", rule_path)
+            print("reading rules from directory "+ rule_path)
             for root, dirs, files in os.walk(rule_path):
                 if ".git" in root:
                     # the .github directory contains CI config in capa-rules
@@ -597,7 +603,7 @@ def get_rules(rule_paths: List[str], disable_progress=False) -> List[Rule]:
                         if not (file.startswith(".git") or file.endswith((".git", ".md", ".txt"))):
                             # expect to see .git* files, readme.md, format.md, and maybe a .git directory
                             # other things maybe are rules, but are mis-named.
-                            logger.warning("skipping non-.yml file: %s", file)
+                            logger.warning("skipping non-.yml file: %s, in path %s", file, rule_path)
                         continue
                     rule_path = os.path.join(root, file)
                     rule_file_paths.append(rule_path)
