@@ -28,7 +28,7 @@
 
 Deprecation notice: as described in [#937](https://github.com/mandiant/capa/issues/937), we plan to remove the SMDA backend for v5. If you rely on this backend, please reach out so we can discuss extending the support for SMDA or transitioning your workflow to use vivisect.
 
-### New Rules (15)
+### New Rules (28)
 
 - data-manipulation/encryption/aes/manually-build-aes-constants huynh.t.nhan@gmail.com
 - nursery/get-process-image-filename michael.hunhoff@mandiant.com
@@ -45,6 +45,19 @@ Deprecation notice: as described in [#937](https://github.com/mandiant/capa/issu
 - collection/browser/gather-chrome-based-browser-login-information @_re_fox
 - nursery/power-down-monitor michael.hunhoff@mandiant.com
 - nursery/hash-data-using-aphash @_re_fox
+- nursery/hash-data-using-jshash @_re_fox
+- host-interaction/file-system/files/list/enumerate-files-on-windows moritz.raabe@mandiant.com anushka.virgaonkar@mandiant.com
+- nursery/check-clipboard-data anushka.virgaonkar@mandiant.com
+- nursery/clear-clipboard-data anushka.virgaonkar@mandiant.com
+- nursery/compile-dotnet-assembly anushka.virgaonkar@mandiant.com
+- nursery/create-process-via-wmi anushka.virgaonkar@mandiant.com
+- nursery/display-service-notification-message-box anushka.virgaonkar@mandiant.com
+- nursery/find-process-by-name anushka.virgaonkar@mandiant.com
+- nursery/generate-random-numbers-in-dotnet anushka.virgaonkar@mandiant.com
+- nursery/send-keystrokes anushka.virgaonkar@mandiant.com
+- nursery/send-request-in-dotnet anushka.virgaonakr@mandiant.com
+- nursery/terminate-process-by-name-in-dotnet anushka.virgaonkar@mandiant.com
+- nursery/hash-data-using-rshash @_re_fox
 -
 
 ### Bug Fixes
@@ -54,6 +67,7 @@ Deprecation notice: as described in [#937](https://github.com/mandiant/capa/issu
 ### capa explorer IDA Pro plugin
 - improve file format extraction #918 @mike-hunhoff
 - remove decorators added by IDA to ELF imports #919 @mike-hunhoff
+- bug fixes for Address abstraction #1091 @mike-hunhoff
 
 ### Development
 
